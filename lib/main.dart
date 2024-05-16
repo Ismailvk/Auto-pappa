@@ -1,4 +1,4 @@
-import 'package:auto_pappa/views/otp_screen.dart';
+import 'package:auto_pappa/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(backgroundColor: Colors.yellow),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
           useMaterial3: true),
-      home: OtpScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

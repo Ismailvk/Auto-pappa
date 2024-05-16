@@ -3,6 +3,7 @@ import 'package:auto_pappa/resources/components/textformfield_widget.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
 import 'package:auto_pappa/views/login_screen.dart';
+import 'package:auto_pappa/views/otp_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -69,24 +70,30 @@ class SignupScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           MyTextField(
-                            validator: (value) {},
+                            validator: (value) => null,
                             controller: emailController,
                             hintText: 'Email',
                           ),
                           const SizedBox(height: 8),
                           MyTextField(
-                            validator: (value) {},
+                            validator: (value) => null,
                             controller: emailController,
                             hintText: 'Password',
                           ),
                           const SizedBox(height: 8),
                           MyTextField(
-                            validator: (value) {},
+                            validator: (value) => null,
                             controller: emailController,
                             hintText: 'Confirm Password',
                           ),
                           const SizedBox(height: 8),
-                          const ButtonWidget(title: 'Register'),
+                          ButtonWidget(
+                            title: 'Register',
+                            onPress: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => OtpScreen()));
+                            },
+                          ),
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 8),
                             child: Row(

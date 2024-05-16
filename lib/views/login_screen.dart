@@ -53,13 +53,13 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         MyTextField(
-                          validator: (value) {},
+                          validator: (value) => null,
                           controller: emailController,
                           hintText: 'Email',
                         ),
                         const SizedBox(height: 8),
                         MyTextField(
-                          validator: (value) {},
+                          validator: (value) => null,
                           controller: emailController,
                           hintText: 'Password',
                         ),

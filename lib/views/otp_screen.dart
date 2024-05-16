@@ -1,6 +1,7 @@
 import 'package:auto_pappa/resources/components/button_widget.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
+import 'package:auto_pappa/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
@@ -41,7 +42,12 @@ class OtpScreen extends StatelessWidget {
               onSubmit: (String verificationCode) => otp = verificationCode,
             ),
             SizedBox(height: size.height / 20),
-            const ButtonWidget(title: 'Verify Otp')
+            ButtonWidget(
+              title: 'Verify Otp',
+              onPress: () => Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (route) => false),
+            )
           ],
         ),
       ),

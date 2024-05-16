@@ -1,5 +1,5 @@
 # auto_pappa
-# car washing application 
+
 A new Flutter project.
 
 ## Getting Started

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color primaryColor = Colors.yellow[700]!;
-  static const secondaryColor = Colors.black;
-  static const white = Colors.white;
-  static const lightGrey = Color.fromARGB(255, 192, 191, 191);
+  static const Color secondaryColor = Colors.black;
+  static const Color white = Colors.white;
+  static const Color lightGrey = Color.fromARGB(255, 192, 191, 191);
+  static const Color cardLightColor = Color.fromARGB(255, 233, 232, 232);
 }

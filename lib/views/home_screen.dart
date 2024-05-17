@@ -1,5 +1,6 @@
 import 'package:auto_pappa/model/featured_services.dart';
 import 'package:auto_pappa/resources/components/appbar_notification_icon_widget.dart';
+import 'package:auto_pappa/resources/components/featured_service_widget.dart';
 import 'package:auto_pappa/resources/components/search_filter.dart';
 import 'package:auto_pappa/resources/components/search_textfield.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
@@ -60,23 +61,53 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 10),
             const Text('Featured Services',
                 style: TextStyle(color: AppColors.lightGrey)),
+            Row(
+              children: [
+                FeaturedServiceWid(
+                    imagePath: featuredServicesList[0].imagePath,
+                    title: featuredServicesList[0].title),
+                FeaturedServiceWid(
+                    imagePath: featuredServicesList[1].imagePath,
+                    title: featuredServicesList[1].title),
+                FeaturedServiceWid(
+                    imagePath: featuredServicesList[2].imagePath,
+                    title: featuredServicesList[2].title),
+                FeaturedServiceWid(
+                    imagePath: featuredServicesList[3].imagePath,
+                    title: featuredServicesList[3].title)
+              ],
+            ),
             Expanded(
+              flex: 5,
               child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+                itemCount: 4,
                 shrinkWrap: true,
-                itemCount: featuredServicesList.length,
                 itemBuilder: (context, index) {
                   final item = featuredServicesList[index];
                   return Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(item.imagePath),
-                        ),
-                        Text(item.title, style: const TextStyle(fontSize: 10))
-                      ],
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Container(
+                      height: 120,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: AppColors.cardLightColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        children: [
+                          PhysicalModel(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(10),
+                            clipBehavior: Clip.antiAlias,
+                            elevation: 2,
+                            child: Image.asset(
+                              item.imagePath,
+                              width: 150,
+                              height: 120,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

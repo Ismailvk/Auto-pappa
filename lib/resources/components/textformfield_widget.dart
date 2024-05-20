@@ -6,10 +6,12 @@ class MyTextField extends StatelessWidget {
   final String hintText;
   TextInputType? number;
   final FormFieldValidator<String?>? validator;
+  double? width;
 
   MyTextField({
     super.key,
     this.number,
+    this.width,
     required this.validator,
     required this.controller,
     required this.hintText,
@@ -18,7 +20,8 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
+        maxWidth: width ?? double.infinity,
         minWidth: 100,
       ),
       child: TextFormField(

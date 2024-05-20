@@ -6,12 +6,22 @@ import 'package:auto_pappa/resources/components/search_textfield.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
 import 'package:auto_pappa/views/add_item_screen.dart';
+import 'package:auto_pappa/views/all_screen.dart';
+import 'package:auto_pappa/views/cashed_screen.dart';
+import 'package:auto_pappa/views/credit_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_point_tab_bar/pointTabIndicator.dart';
 
 // ignore: must_be_immutable
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   final TextEditingController searchController = TextEditingController();
 
   List<FeaturedServices> featuredServicesList = [
@@ -20,8 +30,15 @@ class HomeScreen extends StatelessWidget {
     FeaturedServices(imagePath: ImageUrls.detailing, title: 'Detailing'),
     FeaturedServices(
         imagePath: ImageUrls.exteriorWashing, title: 'Exterior Washing'),
-    FeaturedServices(imagePath: ImageUrls.tyreWashing, title: 'Tyre Washing'),
+    FeaturedServices(imagePath: ImageUrls.tyreWashing, title: 'Body Washing'),
   ];
+
+  late TabController tabController;
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,50 +94,41 @@ class HomeScreen extends StatelessWidget {
                     title: featuredServicesList[3].title)
               ],
             ),
-            Expanded(
-              flex: 5,
-              child: ListView.builder(
-                itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final item = featuredServicesList[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Container(
-                      height: 120,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: AppColors.cardLightColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        children: [
-                          PhysicalModel(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
-                            clipBehavior: Clip.antiAlias,
-                            elevation: 2,
-                            child: Image.asset(
-                              item.imagePath,
-                              width: 150,
-                              height: 120,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
+            DefaultTabController(
+              length: 3,
+              child: TabBar(
+                controller: tabController,
+                dividerColor: AppColors.white,
+                indicator: PointTabIndicator(
+                  position: PointTabIndicatorPosition.bottom,
+                  color: AppColors.primaryColor,
+                  insets: const EdgeInsets.only(bottom: 6),
+                ),
+                tabs: const [
+                  Tab(text: 'All'),
+                  Tab(text: 'Credit'),
+                  Tab(text: 'Cashed'),
+                ],
               ),
-            )
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  AllItemScreen(),
+                  const CreditScreen(),
+                  const CashedScreen(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: AppColors.primaryColor,
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddItemScreen()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => AddItemScreen()));
           },
           label: const Icon(Icons.add)),
     );

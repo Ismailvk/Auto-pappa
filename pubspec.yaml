@@ -43,6 +43,8 @@ dependencies:
   animated_custom_dropdown: ^3.0.0
   card_slider: ^1.0.5
   carousel_slider: ^4.2.1
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
   
 dev_dependencies:
   flutter_test:

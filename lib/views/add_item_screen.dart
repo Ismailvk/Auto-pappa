@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:auto_pappa/resources/components/button_widget.dart';
 import 'package:auto_pappa/resources/components/textformfield_widget.dart';
+import 'package:auto_pappa/resources/constants/app_border_radius.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
+import 'package:auto_pappa/resources/constants/font_styles.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +99,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                             padding: const EdgeInsets.all(5.0),
                             child: ClipRRect(
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+                                  BorderRadius.all(AppBorderRadius.radius10),
                               child: Image.file(
                                 selectedImages[index],
                                 fit: BoxFit.cover,
@@ -133,7 +135,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: AppBorderRadius.gRadius10,
                     ),
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -163,10 +165,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 radius: 35,
                 backgroundImage: AssetImage(ImageUrls.exteriorWashing),
               ),
-              const Text(
-                'Vehicle',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
+              Text('Vehicle', style: AppFontStyle.font18Bold),
               const Text('Add vehicle details in the form below'),
               const SizedBox(height: 7),
               CustomDropdown.search(
@@ -210,15 +209,12 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               MyTextField(
                   validator: (value) {},
                   controller: phoneController,
                   hintText: 'Enter User Phone Number'),
-              const Text(
-                'Payment Method',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text('Payment Method', style: AppFontStyle.normalBold),
               Row(
                 children: [
                   Radio(
@@ -259,49 +255,29 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   color: AppColors.cardLightColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Ismail Vk',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Totota Innova',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '+91 ********99',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '₹ 200',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Body Washing',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Credit',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
+                      Text('Ismail Vk', style: AppFontStyle.normalBold),
+                      Text('Totota Innova', style: AppFontStyle.normalBold),
+                      Text('+91 ********99', style: AppFontStyle.normalBold),
+                      Text('₹ 200', style: AppFontStyle.normalBold),
+                      Text('Body Washing', style: AppFontStyle.normalBold),
+                      Text('Credit', style: AppFontStyle.normalBold)
                     ],
                   ),
                 ),
               ),
-              const Text(
-                'Vehicle Images',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text('Vehicle Images', style: AppFontStyle.normalBold),
               CarouselSlider(
                 items: selectedImages
                     .map((e) => ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          e.path,
+                        child: Image.file(
+                          e,
                           fit: BoxFit.cover,
                         )))
                     .toList(),

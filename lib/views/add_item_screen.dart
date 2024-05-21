@@ -316,12 +316,14 @@ class _AddItemScreenState extends State<AddItemScreen> {
               child: Row(
                 children: [
                   ButtonWidget(
+                    isLoading: false,
                     title: activeIndex != 2 ? 'Continue' : 'Confirm',
                     width: size.width / 3.5,
                     onPress: () => moveToNextStep(),
                   ),
                   const SizedBox(width: 8),
                   ButtonWidget(
+                    isLoading: false,
                     title: 'Back',
                     width: size.width / 3.5,
                     onPress: () => moveToPreviousStep(),

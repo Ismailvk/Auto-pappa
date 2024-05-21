@@ -44,6 +44,7 @@ class OtpScreen extends StatelessWidget {
             SizedBox(height: size.height / 20),
             ButtonWidget(
               title: 'Verify Otp',
+              isLoading: false,
               onPress: () => Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => HomeScreen()),
                   (route) => false),

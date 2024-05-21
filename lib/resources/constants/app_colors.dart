@@ -7,6 +7,7 @@ class AppColors {
   static const Color lightGrey = Color.fromARGB(255, 192, 191, 191);
   static const Color cardLightColor = Color.fromARGB(255, 233, 232, 232);
   static const Color red = Colors.red;
+  static const Color green = Colors.green;
   static LinearGradient yellowGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,

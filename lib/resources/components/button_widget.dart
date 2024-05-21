@@ -6,9 +6,14 @@ class ButtonWidget extends StatelessWidget {
   final String title;
   final Function()? onPress;
   final double? width;
+  bool isLoading;
 
-  const ButtonWidget(
-      {super.key, required this.title, this.onPress, this.width});
+  ButtonWidget(
+      {super.key,
+      required this.title,
+      this.onPress,
+      this.width,
+      required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +26,12 @@ class ButtonWidget extends StatelessWidget {
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
             backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor)),
-        child: Text(title,
-            style: const TextStyle(color: AppColors.secondaryColor)),
+        child: isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Text(title,
+                style: const TextStyle(color: AppColors.secondaryColor)),
       ),
     );
   }

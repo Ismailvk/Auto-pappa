@@ -1,16 +1,26 @@
+import 'package:auto_pappa/controller/signup/signup_bloc.dart';
 import 'package:auto_pappa/resources/components/button_widget.dart';
 import 'package:auto_pappa/resources/components/textformfield_widget.dart';
 import 'package:auto_pappa/resources/constants/app_colors.dart';
+import 'package:auto_pappa/resources/constants/font_styles.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
+import 'package:auto_pappa/utils/snackbar.dart';
+import 'package:auto_pappa/utils/validation.dart';
 import 'package:auto_pappa/views/login_screen.dart';
-import 'package:auto_pappa/views/otp_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+// ignore: must_be_immutable
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPassController = TextEditingController();
+
+  GlobalKey<FormState> signupKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,30 +46,27 @@ class SignupScreen extends StatelessWidget {
                   children: [
                     Lottie.asset(ImageUrls.signupLottie,
                         height: size.height / 4.5, width: size.width / 3),
-                    const Text(
-                      'WELCOME \n Create Your Account',
-                      style: TextStyle(
-                          color: AppColors.white, fontWeight: FontWeight.bold),
-                    ),
+                    const Text('WELCOME \n Create Your Account',
+                        style: AppFontStyle.normalBoldWhite)
                   ],
                 ),
                 Text(
                   "AUTO PAPPA",
                   style: TextStyle(
-                    color: AppColors.primaryColor.withOpacity(0.3),
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: AppColors.primaryColor.withOpacity(0.3),
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: size.height / 14),
+                SizedBox(height: size.height / 30),
                 Container(
-                  height: size.height / 2,
-                  width: size.width / 1.18,
+                  height: size.height / 1.5,
+                  width: size.width / 1.15,
                   decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(20)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10),
                     child: Form(
+                      key: signupKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -70,28 +77,59 @@ class SignupScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           MyTextField(
-                            validator: (value) => null,
+                            validator: (value) =>
+                                Validation.isEmpty(value, 'Email'),
                             controller: emailController,
                             hintText: 'Email',
                           ),
                           const SizedBox(height: 8),
                           MyTextField(
-                            validator: (value) => null,
-                            controller: emailController,
+                            validator: (value) =>
+                                Validation.isEmpty(value, "Name"),
+                            controller: nameController,
+                            hintText: 'Name',
+                          ),
+                          const SizedBox(height: 8),
+                          MyTextField(
+                            validator: (value) => Validation.isPassword(value),
+                            controller: passwordController,
                             hintText: 'Password',
                           ),
                           const SizedBox(height: 8),
                           MyTextField(
-                            validator: (value) => null,
-                            controller: emailController,
+                            validator: (value) => Validation.isPasswordMatch(
+                                passwordController.text,
+                                confirmPassController.text),
+                            controller: confirmPassController,
                             hintText: 'Confirm Password',
                           ),
                           const SizedBox(height: 8),
-                          ButtonWidget(
-                            title: 'Register',
-                            onPress: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => OtpScreen()));
+                          BlocBuilder<SignupBloc, SignupState>(
+                            builder: (context, state) {
+                              if (state is SignupFailedState) {
+                                print('here we go');
+                                topSnackbar(
+                                    context, state.message, AppColors.red);
+                              }
+                              bool isLoading = state is SignupLoadingState;
+                              return ButtonWidget(
+                                isLoading: isLoading,
+                                title: 'Register',
+                                onPress: () {
+                                  // if (signupKey.currentState!.validate()) {
+                                  //   Map<String, dynamic> signupData = {
+                                  //     'name': nameController.text,
+                                  //     'email': emailController.text,
+                                  //     'password': passwordController.text,
+                                  //   };
+                                  //   context.read<SignupBloc>().add(
+                                  //         SignupButtonEvent(
+                                  //           signupData: signupData,
+                                  //         ),
+                                  //       );
+                                  // }
+                                },
+                              );
                             },
                           ),
                           const Padding(

@@ -7,4 +7,6 @@ class AppFontStyle {
       const TextStyle(fontWeight: FontWeight.bold, color: AppColors.red);
   static TextStyle font18Bold =
       const TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
+  static const TextStyle normalBoldWhite =
+      TextStyle(color: AppColors.white, fontWeight: FontWeight.bold);
 }

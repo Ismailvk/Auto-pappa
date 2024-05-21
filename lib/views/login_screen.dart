@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 8),
-                        const ButtonWidget(title: 'Login'),
+                        ButtonWidget(title: 'Login', isLoading: false),
                         const Padding(
                           padding: EdgeInsets.symmetric(vertical: 8),
                           child: Row(

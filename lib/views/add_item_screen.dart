@@ -197,13 +197,13 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 children: [
                   MyTextField(
                       width: MediaQuery.sizeOf(context).width / 4,
-                      validator: (value) {},
+                      validator: (value) => null,
                       controller: amountController,
                       hintText: 'Amount'),
                   const SizedBox(width: 8),
                   Expanded(
                     child: MyTextField(
-                        validator: (value) {},
+                        validator: (value) => null,
                         controller: nameController,
                         hintText: 'Enter User Name'),
                   ),
@@ -211,7 +211,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
               ),
               const SizedBox(height: 8),
               MyTextField(
-                  validator: (value) {},
+                  validator: (value) => null,
                   controller: phoneController,
                   hintText: 'Enter User Phone Number'),
               Text('Payment Method', style: AppFontStyle.normalBold),
@@ -299,6 +299,23 @@ class _AddItemScreenState extends State<AddItemScreen> {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.amber, borderRadius: BorderRadius.circular(10)),
+            height: 40,
+            width: 40,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Center(
+                child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    onPressed: () => Navigator.pop(context)),
+              ),
+            ),
+          ),
+        ),
         title: const Text('Add Vehicle Data'),
         backgroundColor: AppColors.white,
         elevation: 2,

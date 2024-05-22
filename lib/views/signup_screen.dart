@@ -7,6 +7,7 @@ import 'package:auto_pappa/resources/constants/image_urls.dart';
 import 'package:auto_pappa/utils/snackbar.dart';
 import 'package:auto_pappa/utils/validation.dart';
 import 'package:auto_pappa/views/login_screen.dart';
+import 'package:auto_pappa/views/otp_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,6 +129,9 @@ class SignupScreen extends StatelessWidget {
                                   //         ),
                                   //       );
                                   // }
+
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => OtpScreen()));
                                 },
                               );
                             },

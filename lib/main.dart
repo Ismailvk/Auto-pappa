@@ -1,10 +1,13 @@
 import 'package:auto_pappa/controller/login/login_bloc.dart';
 import 'package:auto_pappa/controller/signup/signup_bloc.dart';
+import 'package:auto_pappa/data/shared_preference/shared_preference.dart';
 import 'package:auto_pappa/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPref.instance.initStorage();
   runApp(const MyApp());
 }
 

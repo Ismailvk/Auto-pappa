@@ -1,8 +1,5 @@
 import 'package:auto_pappa/model/featured_services.dart';
 import 'package:auto_pappa/resources/components/vehicle_card.dart';
-import 'package:auto_pappa/resources/constants/app_border_radius.dart';
-import 'package:auto_pappa/resources/constants/app_colors.dart';
-import 'package:auto_pappa/resources/constants/font_styles.dart';
 import 'package:auto_pappa/resources/constants/image_urls.dart';
 import 'package:auto_pappa/views/vehicle_deails_screen.dart';
 import 'package:flutter/material.dart';

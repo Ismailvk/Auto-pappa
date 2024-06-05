@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
+import 'package:auto_pappa/resources/components/app_bar_button_widget.dart';
 import 'package:auto_pappa/resources/components/button_widget.dart';
 import 'package:auto_pappa/resources/components/textformfield_widget.dart';
 import 'package:auto_pappa/resources/constants/app_border_radius.dart';
@@ -299,23 +300,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(10)),
-            height: 40,
-            width: 40,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Center(
-                child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    onPressed: () => Navigator.pop(context)),
-              ),
-            ),
-          ),
-        ),
+        leading: appBarWidget(context),
         title: const Text('Add Vehicle Data'),
         backgroundColor: AppColors.white,
         elevation: 2,

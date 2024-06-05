@@ -27,7 +27,7 @@ class AllItemScreen extends StatelessWidget {
         return GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const VehicleDetailsScreen()));
+                  builder: (context) => VehicleDetailsScreen()));
             },
             child: VehicleCard(featuredService: item));
       },

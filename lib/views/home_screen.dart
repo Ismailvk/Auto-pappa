@@ -127,8 +127,8 @@ class _HomeScreenState extends State<HomeScreen>
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: AppColors.primaryColor,
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddItemScreen()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AddItemScreen()));
           },
           label: const Icon(Icons.add)),
     );

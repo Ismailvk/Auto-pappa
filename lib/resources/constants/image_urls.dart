@@ -8,4 +8,6 @@ class ImageUrls {
   static const String interiorWashing = 'assets/images/interior_washing.jpeg';
   static const String exteriorWashing = 'assets/images/exterior_washing.jpeg';
   static const String detailing = 'assets/images/detailing.jpeg';
+  static const String carIconSvg = 'assets/svgs/car_svg.svg';
+  static const String personSvg = 'assets/svgs/person_svg.svg';
 }
